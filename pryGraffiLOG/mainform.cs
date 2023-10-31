@@ -31,5 +31,10 @@ namespace pryGraffiLOG
         {
             objAccesoBD.TraerDatos(DataGridViewLOG);
         }
+
+        private void mainform_Load(object sender, EventArgs e)
+        {
+            //registrar LOG de inicio de sistema 
+        }
     }
 }

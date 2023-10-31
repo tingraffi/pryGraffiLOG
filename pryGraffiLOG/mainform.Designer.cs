@@ -92,6 +92,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Name = "mainform";
             this.Text = "Formulario principal";
+            this.Load += new System.EventHandler(this.mainform_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewLOG)).EndInit();

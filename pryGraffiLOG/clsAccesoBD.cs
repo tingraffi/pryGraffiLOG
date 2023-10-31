@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms;
+using System.Data;
 
 namespace pryGraffiLOG
 {
@@ -18,8 +19,10 @@ namespace pryGraffiLOG
             string rutaArchivo;
             OleDbCommand comandoBD;
             OleDbDataReader lectorBD;
+        private OleDbDataAdapter adaptadorDS;
+        private DataTable objDataSet;
 
-            public void ConectarBaseDatos()
+        public void ConectarBaseDatos()
             {
                 try
                 {
@@ -69,7 +72,47 @@ namespace pryGraffiLOG
             }
 
         }
+        public void TraerDatosDataSet(DataGridView grilla)
+        {
+            try
+            {
+                ConectarBaseDatos();
+                comandoBD = new OleDbCommand();
 
+                comandoBD.Connection = conexionBD;
+                comandoBD.CommandType = System.Data.CommandType.TableDirect;
+                comandoBD.CommandText = "Registros";
+
+                adaptadorDS = new OleDbDataAdapter(comandoBD);
+                adaptadorDS.Fill(objDataSet, "Registros");
+
+                //if (objDataSet.Tables["Registros"].Rows.Count > 0)
+                //{
+                //    grilla.Columns.Add("ID", "ID");
+                //    grilla.Columns.Add("Categoría", "Categoría");
+                //    grilla.Columns.Add("Fecha/Hora", "Fecha/Hora");
+                //    grilla.Columns.Add("Descrip", "Apellido");
+
+                //    foreach (DataRow fila in objDataSet.Tables[0].Rows)
+                //    {
+                //        //DatosExtraidos += fila[1] + "\n";
+
+                //        grilla.Rows.Add(fila[0], fila[1], fila[2]);
+                //    }
+
+                    
+
+                //}
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
 
     }
 
